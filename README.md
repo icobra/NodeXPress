@@ -31,3 +31,9 @@ node_modules
 We have server om http://localhost:3000
 
 Наш сервер находится по адресу http://localhost:3000
+
+
+Error / Error: Cannot find module 'express-handlebars' / 
+
+Recept /npm install --save express-handlebars 
+       or npm install --save handlebars/ 
