@@ -3,6 +3,12 @@ Simple site on nodeJS + express
 Sorry for mistakes. It is study veersion. I'm try it make good.
 Простите за плохое описание, это пробная версия, я только учусь
 
+If you want clone / 
+Если хотите скопировать себе на компьютер
+
+git clone https://github.com/icobra/NodeXPress
+
+
 We need Node + npm
 Нужно установить node и npm
 
