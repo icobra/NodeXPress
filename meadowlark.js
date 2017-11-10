@@ -3,6 +3,9 @@ var app = express();
 // Установка механизма представления hadlebars
 var handlebars = require('express-handlebars')
    .create({ defaultLayout:'main'});
+var fortune = require('./lib/fortune.js')
+
+
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
@@ -10,21 +13,11 @@ app.set('port', process.env.PORT || 3000);
 
 app.use(express.static(__dirname + '/public'));
 
-var fortunes = [
-   "Победи свои страхи, или они победят тебя.",
-   "Рекам нужны истоки.",
-   "Не бойся неведомого.",
-   "Тебя ждёт приятный сюрприз.",
-   "Будь проще везде, где только можно.",
-];
-
 app.get('/', function(req, res){
     res.render ('home');
 });
 app.get('/about', function(req, res){
-    var randomFortune = 
-        fortunes[Math.floor(Math.random() * fortunes.length)];
-    res.render('about', { fortune: randomFortune});
+    res.render('about', { fortune: fortune.getFortune() });
 });
 // Обобщенный обработчик 404 (промежуточное ПО)
 app.use(function(req, res, next){
