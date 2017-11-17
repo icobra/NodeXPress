@@ -5,16 +5,19 @@
   "main": "meadowlark.js",
   "dependencies": {
     "express": "^4.16.2",
-    "express-handlebars": "^3.0.0"
+    "express-handlebars": "^3.0.0",
+    "minimatch": "^3.0.2",
+    "pug": "^2.0.0-rc.4"
   },
   "devDependencies": {
     "chai": "^4.1.2",
-    "grunt": "^1.0.1",
+    "grunt": "^0.4.1",
     "grunt-cafe-mocha": "^0.1.13",
     "grunt-contrib-jshint": "^1.1.0",
     "grunt-exec": "^3.0.0",
     "mocha": "^4.0.1",
-    "zombie": "^3.1.1"
+    "node-gyp": "^3.6.2",
+    "zombie": "^4.3.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
