@@ -64,6 +64,19 @@ app.use(function(req, res, next){
     next();
 });
 
+// Маршрут для стишка
+app.get('/nursery-rhyme', function(req, res){
+    res.render('nursery-rhyme');
+});
+app.get('/data/nursery-rhyme', function(req,res){
+    res.json({
+        animal: 'бельчонок',
+        bodyPart: 'хвост',
+        adjective: 'пушистый',
+        noun: 'черт',
+    });
+});
+
 app.get('/', function(req, res){
     res.render ('home');
 });
