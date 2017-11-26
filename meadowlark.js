@@ -1,5 +1,6 @@
 var express = require('express');
 var fortune = require('./lib/fortune.js');
+var formidable = require('formidable');
 
 var app = express();
 // Установка механизма представления hadlebars
@@ -97,6 +98,25 @@ app.post('/process', function(req, res){
     }
 });
 
+//Маршрут для загрузки фотографий
+app.get('/contest/vacation-photo', function(req, res){
+    var now = new Date();
+    res.render('contest/vacation-photo',{
+        year: now.getFullYear(), month: now. getMonth()
+    });
+});
+
+app.post('/contest/vacation-photo/:year/:month', function(req, res){
+    var form = new formidable. IncomingForm();
+    form.parse(req, function(err, fields, files){
+        if(err) return res.redirect(303, '/error' );
+        console.log('recived fields:');
+        console.log(fields);
+        console.log('recived fieles' );
+        console.log(files);
+        res.redirect(303, '/thank-you');
+    });
+});
 
 app.get('/', function(req, res){
     res.render ('home');
