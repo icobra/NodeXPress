@@ -1,6 +1,7 @@
 var express = require('express');
 var fortune = require('./lib/fortune.js');
 var formidable = require('formidable');
+var credentials = require('./credentials.js')
 
 var app = express();
 // Установка механизма представления hadlebars
@@ -19,6 +20,14 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
 app.set('port', process.env.PORT || 3000);
+
+// Для cook
+app.use(require('cookie-parser')(credentials.cookieSecret));
+app.use(require('express-session')({
+    resave: false,
+    saveUninitialized: false,
+    secret: credentials.cookieSecret,
+}));
 
 app.use(express.static(__dirname + '/public'));
 
@@ -144,6 +153,12 @@ app.get('/headers', function(req,res){
         s += name + ': ' + req.headers[name] + '\n';
     res.send(s);
 });
+// промежуточное ПО для предупреждения в магазине
+var cartValidation = reuire('./lib/cartValidation.js');
+
+app.use(cartValidation.checkWaivers);
+app.use(cartValidation.checkGuestCounts);
+
 // Обобщенный обработчик 404 (промежуточное ПО)
 app.use(function(req, res, next){
     res.status(404);
